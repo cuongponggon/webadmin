@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<div class="animated fadeIn">
+  <div class="card" id="cardContainer">
+    <div class=card-header>
+      <i class="fa fa-align-justify" > Account </i>
+    </div>
+    <div class="card-body">
+      <div class="form-group" [formGroup]="accountForm">
+        <div class="input-group">
+            <span class="input-group-prepend">
+                <button type="button" class="btn btn-primary" [routerLink]="['add']" routerLinkActive="active">
+                    <i class="fa fa-user-plus"> Add </i>
+                </button>
+            </span>
+          <input type="text" class="form-control" placeholder="Search by username ..." formControlName="searchValue"/>
+          <span class="input-group-append">
+            <button type="button" class="btn btn-primary" (click)="searchByUsernameOrFullname(accountForm.get('searchValue').value)">
+              <i class="fa fa-search"></i> Search </button>
+          </span> 
+        </div>
+      </div>
+      <table class="table table-bordered table-striped table-sm">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Fullname</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Gender</th>
+            <!-- <th>Role</th> -->
+            <th>Status</th>
+            <th id="thAction">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let account of accounts">
+            <td>{{account.username}}</td>
+            <td>{{account.fullname}}</td>
+            <td>{{account.email}}</td>
+            <td>{{account.phone}}</td>
+            <td *ngIf="account.gender == 0">
+              <i class="icon-symbol-male"></i>
+            </td>
+            <td *ngIf="account.gender == 1">
+              <i class="icon-symbol-female"></i>
+            </td>
+            <td *ngIf="account.gender == 2">
+              <i class="icon-user"></i>
+            </td>
+            <td *ngIf="account.role == 1">
+              Adminstrator
+            </td>
+            <td *ngIf="account.roleId == 2">
+              Pet Owner
+            </td>
+            <td *ngIf="account.roleId == 3">
+              Shop Owner
+            </td>
+            <td  *ngIf="account.status == 'active'"> 
+              <span class="badge">Active</span>
+            </td>
+            <td *ngIf="account.status == 'inactive'">
+              <span class="badge" >Inactive</span>
+            </td>
+            <td *ngIf="account.status == 'Deleted'">
+              <span class="badge" >Deleted</span>
+            </td>
+            <td id="tdAction">                
+                <button type="button" class="btn btn-danger" id="btnDelete" (click)="deleteAccount(account.id, account.username)" >
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                <button type="button" class="btn btn-info" id="btnDetail" [routerLink]="['detail', account.id]" routerLinkActive="active">
+                  <span class="glyphicon glyphicon-eye-open"></span>
+                </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
