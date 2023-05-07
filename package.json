@@ -46,7 +46,7 @@
     "angular-6-datatable": "^0.8.0",
     "angular-datatables": "^8.0.0",
     "angularfire2": "^5.2.1",
-    "bootstrap": "^4.1.2",
+    "bootstrap": "^4.3.1",
     "chart.js": "^2.7.2",
     "core-js": "^2.5.7",
     "datatables.net": "^1.10.19",
